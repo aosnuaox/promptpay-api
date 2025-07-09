@@ -1,9 +1,12 @@
+# Exported from Render on 2025-07-09T08:34:04Z
 services:
-  # A Docker web service
-  - type: web
-    name: fastapi-example
-    runtime: python
-    plan: free
-    autoDeploy: false
-    buildCommand: pip install -r requirements.txt
-    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+- type: web
+  name: promptpay-api
+  runtime: python
+  repo: https://github.com/aosnuaox/promptpay-api
+  plan: free
+  region: oregon
+  buildCommand: pip install -r requirements.txt
+  startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+  autoDeployTrigger: commit
+version: "1"
