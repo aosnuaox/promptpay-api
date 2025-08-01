@@ -10,6 +10,13 @@ app = FastAPI(
     version="1.3.0",
 )
 
+@app.get("/health",
+        responses={
+        200: {
+            "description": "ส่งคืนรูปภาพ QR Code ที่สร้างสำเร็จ",
+        }
+    })
+
 @app.get(
     "/{id_or_phone_number}",
     tags=["PromptPay QR Code Generator"],
@@ -26,7 +33,7 @@ def generate_qr_code_without_amount(id_or_phone_number: str):
     payload = qrcode.generate_payload(id_or_phone_number)
     img = qrcode.to_image(payload).resize((1300, 1300), Image.LANCZOS)
     draw = ImageDraw.Draw(img)
-    border_width = 10
+    border_width = 30
     draw.rectangle(
         [0, 0, img.width, img.height],
         outline="#003d6a",
