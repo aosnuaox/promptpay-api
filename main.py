@@ -33,7 +33,7 @@ def generate_qr_code_without_amount(id_or_phone_number: str):
     payload = qrcode.generate_payload(id_or_phone_number)
     img = qrcode.to_image(payload).resize((1300, 1300), Image.LANCZOS)
     draw = ImageDraw.Draw(img)
-    border_width = 30
+    border_width = 100
     draw.rectangle(
         [0, 0, img.width, img.height],
         outline="#003d6a",
